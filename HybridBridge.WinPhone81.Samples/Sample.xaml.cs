@@ -4,6 +4,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using HybridBridge.Win81;
 using HybridBridge.WinPhone81.Samples.Controllers;
 
 namespace HybridBridge.WinPhone81.Samples
@@ -38,7 +39,7 @@ namespace HybridBridge.WinPhone81.Samples
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
-                switch ((ESample) e.Parameter)
+                switch ((ESample)e.Parameter)
                 {
                     case ESample.MethodSamplesAsync:
                         new WebViewHybridBridge(webView).Add(
@@ -57,7 +58,7 @@ namespace HybridBridge.WinPhone81.Samples
                         webView.Navigate(new Uri(@"ms-appx-web:///Views/EventSamplesAsync.html"));
                         break;
                     case ESample.MessagingSamplesAsync:
-                        var bridgeAsync = new WebViewHybridBridge(webView) {new HybridMessagingHandler()};
+                        var bridgeAsync = new WebViewHybridBridge(webView) { new HybridMessagingHandler() };
                         bridgeAsync.JavascriptTimeout = TimeSpan.FromSeconds(30);
                         bridgeAsync.Add(
                             new ClassBridge<MessagingSamplesController>().AddInstance(
