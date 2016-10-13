@@ -1,0 +1,14 @@
+﻿<Page
+    x:Class="HybridBridge.UWP.Samples.Sample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HybridBridge.UWP.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <WebView x:Name="webView" />
+        <Button x:Name="backButton" Content="Back" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="backButton_Click" Height="40"/>
+    </Grid>
+</Page>

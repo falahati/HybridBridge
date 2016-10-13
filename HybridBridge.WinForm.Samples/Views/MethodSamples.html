@@ -1,0 +1,45 @@
+﻿<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="../Assets/style.css"/>
+    <script>
+        function StaticAddTest() {
+            var controllersNs = window.HybridBridge.WinForm.Samples.Controllers;
+            var value = controllersNs.MethodSamplesController.StaticAddMethod(5, 6);
+            alert('Result of 5 + 6, calculated in C# is: ' + value);
+        }
+
+        function ComplexObjectMethod() {
+            var value = window.Controller.ComplexObjectMethod(25);
+            alert(JSON.stringify(value, null, 4));
+        }
+
+        function AlertMethod() {
+            window.Controller.AlertMethod();
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.AlertMethod();</pre>
+            <input type="button" value="Instance Method" onclick="AlertMethod();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridBridge.WinForm.Samples.Controllers.MethodSamplesController.StaticAddMethod(5, 6);</pre>
+            <label>Or</label>
+            <pre>var ControllersNS = HybridBridge.WinForm.Samples.Controllers;
+ControllersNS.MethodSamplesController.StaticAddMethod(5, 6);</pre>
+            <input type="button" value="Static Method" onclick="StaticAddTest();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.ComplexObjectMethod(25);</pre>
+            <input type="button" value="Complex Object Return Value" onclick="ComplexObjectMethod();" />
+        </div>
+        <div class="info">* `Controller` is a variable containig an instance of MethodSamplesController class created and made accessible for Javascript by C#</div>
+    </div>
+</body>
+</html>

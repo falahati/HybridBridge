@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="../Assets/style.css" />
+    <script>
+        function AlertMethod() {
+            window.Controller.AlertMethodAsync();
+        }
+        function StaticAddTest() {
+            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            controllersNs.MethodSamplesController.StaticAddMethodAsync(5, 6, function(value) {
+                window.external.notify('Result of 5 + 6, calculated in C# is: ' + value);
+            });
+        }
+        function ComplexObjectMethod() {
+            window.Controller.ComplexObjectMethodAsync(25, function(value) {
+                window.external.notify(JSON.stringify(value, null, 4));
+            });
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.AlertMethodAsync();</pre>
+            <input type="button" value="Instance Method" onclick="AlertMethod();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridBridge.Win81.Samples.Controllers.MethodSamplesController.StaticAddMethod(5, 6, function(value) {
+    // Do something with return value
+});</pre>
+            <label>Or</label>
+            <pre>var ControllersNS = HybridBridge.Win81.Samples.Controllers;
+ControllersNS.MethodSamplesController.StaticAddMethodAsync(5, 6, function(value) {
+    // Do something with return value
+});</pre>
+            <input type="button" value="Static Method" onclick="StaticAddTest();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.ComplexObjectMethodAsync(25, function(value) {
+    // Do something with return value
+});</pre>
+            <input type="button" value="Complex Object Return Value" onclick="ComplexObjectMethod();" />
+        </div>
+        <div class="info">* `Controller` is a variable containig an instance of MethodSamplesController class created and made accessible for Javascript by C#</div>
+    </div>
+</body>
+</html>

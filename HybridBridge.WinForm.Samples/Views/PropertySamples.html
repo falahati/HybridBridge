@@ -1,0 +1,76 @@
+﻿<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="../Assets/style.css" />
+    <script>
+        function GetComplexField() {
+            var controllersNs = window.HybridBridge.WinForm.Samples.Controllers;
+            alert(JSON.stringify(controllersNs.PropertySamplesController.ComplexField, null, 4));
+        }
+
+        function GetIntProperty() {
+            alert(window.Controller.IntProperty);
+        }
+
+        function GetReadOnlyProperty() {
+            alert(window.Controller.ReadOnlyProperty);
+        }
+
+        function SetIntProperty() {
+            window.Controller.IntProperty = 10;
+            alert('IntProperty changed to 10. You can check the new value using the above example.');
+        }
+
+        function SetComplexField() {
+            var value = { IntValue: 10, StringValue: 'Some Javascript String' };
+            var controllersNs = window.HybridBridge.WinForm.Samples.Controllers;
+            controllersNs.PropertySamplesController.ComplexField = value;
+            alert('ComplexField changed with new object. You can check the new value using the above example.');
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>var x = Controller.IntProperty;</pre>
+            <label>Or</label>
+            <pre>var x = Controller.get_IntProperty();</pre>
+            <input type="button" value="Get Instance Property" onclick="GetIntProperty();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.IntProperty = 10;</pre>
+            <label>Or</label>
+            <pre>Controller.set_IntProperty(10);</pre>
+            <input type="button" value="Set Instance Property" onclick="SetIntProperty();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>var x = HybridBridge.WinForm.Samples.Controllers.PropertySamplesController.ComplexField;</pre>
+            <label>Or</label>
+            <pre>var ControllersNS = HybridBridge.WinForm.Samples.Controllers;
+var x = ControllersNS.PropertySamplesController.ComplexField;</pre>
+            <input type="button" value="Get Static Complex Type Field" onclick="GetComplexField();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridBridge.WinForm.Samples.Controllers.PropertySamplesController.ComplexField = { IntValue: 10, StringValue: 'Some Javascript String' };</pre>
+            <label>Or</label>
+            <pre>var x = { IntValue: 10, StringValue: 'Some Javascript String' };
+var ControllersNS = HybridBridge.WinForm.Samples.Controllers;
+ControllersNS.PropertySamplesController.ComplexField = x;
+</pre>
+            <input type="button" value="Set Instance Property" onclick="SetComplexField();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>var x = Controller.ReadOnlyProperty;</pre>
+            <label>Or</label>
+            <pre>var x = Controller.get_ReadOnlyProperty();</pre>
+            <input type="button" value="Get Property With Custom Get Method" onclick="GetReadOnlyProperty();" />
+        </div>
+        <div class="info">* `Controller` is a variable containig an instance of PropertySamplesController class created and made accessible for Javascript by C#</div>
+    </div>
+</body>
+</html>

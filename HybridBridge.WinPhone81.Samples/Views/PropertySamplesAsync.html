@@ -1,0 +1,48 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="../Assets/style.css" />
+    <script>
+        function GetIntProperty() {
+            window.Controller.get_IntPropertyAsync(function(value) {
+                window.external.notify(value.toString());
+            });
+        }
+
+        function SetIntProperty() {
+            window.Controller.set_IntPropertyAsync(10);
+            window.external.notify('IntProperty changed to 10. You can check the new value using the above example.');
+        }
+        
+        function GetReadOnlyProperty() {
+            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            controllersNs.PropertySamplesControllerAsync.get_ReadOnlyPropertyAsync(function (value) {
+                window.external.notify(value);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.get_IntPropertyAsync(function(value) {
+    // Do something with value
+});</pre>
+            <input type="button" value="Get Instance Property" onclick="GetIntProperty();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>Controller.set_IntPropertyAsync(10);</pre>
+            <input type="button" value="Set Instance Property" onclick="SetIntProperty();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridBridge.Win81.Samples.Controllers.PropertySamplesControllerAsync.get_ReadOnlyPropertyAsync(function (value) {
+    // Do something with value
+});</pre>
+            <input type="button" value="Get Property With Custom Get Method" onclick="GetReadOnlyProperty();" />
+        </div>
+        <div class="info">* `Controller` is a variable containig an instance of PropertySamplesControllerAsync class created and made accessible for Javascript by C#</div>
+    </div>
+</body>
+</html>

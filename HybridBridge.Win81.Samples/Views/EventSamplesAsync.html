@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="../Assets/style.css" />
+    <script>
+        function StartCountdown() {
+            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            controllersNs.EventSamplesController.StartTimerAsync(5);
+        }
+
+        function Countdown(value) {
+            window.external.notify(value.toString());
+        }
+
+        function Subscribe() {
+            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            controllersNs.EventSamplesController.add_IntEvent(Countdown);
+            window.external.notify("Subscribed to 'IntEvent' event. Doing this more than once, results in multiple subscription.");
+        }
+
+        function UnSubscribe() {
+            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            controllersNs.EventSamplesController.remove_IntEvent(Countdown);
+            window.external.notify("Unsubscribed from 'IntEvent' event.");
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>function Countdown(value) {
+    // Do something with value
+}
+HybridBridge.Win81.Samples.Controllers.EventSamplesController.add_IntEvent(Countdown);</pre>
+            <label>Or</label>
+            <pre>
+HybridBridge.Win81.Samples.Controllers.EventSamplesController.IntEvent = function(value) {
+    // Do something with value
+};</pre>
+            <input type="button" value="Subscribe to 'IntEvent' Static Event" onclick="Subscribe();" />
+            <input type="button" value="Start Timer" onclick="StartCountdown();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridBridge.Win81.Samples.Controllers.EventSamplesController.remove_IntEvent(Countdown);</pre>
+            <input type="button" value="Unsubscribe from 'IntEvent' Static Event" onclick="UnSubscribe();" />
+        </div>
+    </div>
+</body>
+</html>

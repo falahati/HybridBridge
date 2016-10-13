@@ -1,0 +1,46 @@
+﻿<!-- saved from url=(0016)http://127.0.0.1 -->
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="../Assets/style.css" />
+    <script>
+        function SubscribeToNewMessageID() {
+            window.HybridMessaging.Subscribe("NewMessageID", function(stringArgument) {
+                alert("'NewMessageID' received, argument is: " + stringArgument);
+                return stringArgument.length;
+            });
+            alert("Subscribed to 'NewMessageID' message. Doing this more than once, results in multiple subscription.");
+        }
+
+        function SendMyMessageID() {
+            window.HybridMessaging.Send("MyMessageID", { IntValue: 10, StringValue: 'Some Javascript String' });
+        }
+
+        function SendUnregisteredMessageID() {
+            window.HybridMessaging.Send("UnregisteredMessageID");
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridMessaging.Send("UnregisteredMessageID");</pre>
+            <input type="button" value="Send a 'SendUnregisteredMessageID' Message" onclick="SendUnregisteredMessageID();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridMessaging.Subscribe("NewMessageID", function(stringArgument) {
+    // Do something with 'stringArgument' variable
+    return stringArgument.length;
+});</pre>
+            <input type="button" value="Subscribe to 'NewMessageID' Message" onclick="SubscribeToNewMessageID();" />
+        </div>
+        <div class="sample">
+            <label>Javascript Code:</label>
+            <pre>HybridMessaging.Send("MyMessageID", { IntValue: 10, StringValue: 'Some Javascript String' });</pre>
+            <input type="button" value="Send a 'MyMessageID' Message With Complex Argument" onclick="SendMyMessageID();" />
+        </div>
+    </div>
+</body>
+</html>

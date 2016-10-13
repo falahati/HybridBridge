@@ -1,0 +1,70 @@
+﻿/* This is a minimal style sheet intended to demonstrate how to include 
+   static content in your hybrid app.  Other static content, such as 
+   javascript files and images, can be included in this same folder
+   (Resources on iOS or Assets on Android), with the same Build Action 
+   (BundleResource on iOS or AndroidAsset on Android), to be accessible 
+   from a path starting at the root of your hybrid application.  */
+
+* {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+input[type="button"] {
+    float: right;
+    width: 100%;
+    display: block;
+    clear: both;
+    background: dimgray;
+    color: white;
+    border: 1px solid lightgray;
+    margin: 10px 0;
+    padding: 3px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+div.sample {
+    width: 96%;
+    padding: 0 2%;
+    margin: 10px 0;
+}
+
+div.info {
+    width: 96%;
+    padding: 0 2%;
+    margin: 10px 0;
+    font-size: 10px;
+}
+
+div.sample pre {
+    width: 96%;
+    padding: 10px 2%;
+    color: dimgray;
+    background: lightgray;
+    border: 1px solid black;
+    overflow: scroll;
+    overflow-y: scroll;
+}
+
+div.sample label {
+    color: black;
+    margin: 5px 0;
+    padding-bottom: 3px;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    margin: 3px 0 0 0;
+    border-radius: 4px;
+    background-color: #000000;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px #ffffff;
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}

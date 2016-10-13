@@ -1,0 +1,16 @@
+﻿<Window x:Class="HybridBridge.WPF.Samples.Samples"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HybridBridge.WPF.Samples"
+        mc:Ignorable="d"
+        Title="Samples" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Width="auto" Height="auto">
+    <Grid Height="155" Width="264">
+        <Button x:Name="methodSamples" Content="Class Method Samples" HorizontalAlignment="Center" VerticalAlignment="Top" Width="244" Margin="10,10,10,0" Click="methodSamples_Click" Height="30" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="propertySamples" Content="Class Property Samples" HorizontalAlignment="Center" VerticalAlignment="Top" Width="244" Margin="10,45,10,0" Click="propertySamples_Click" Height="30" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="eventSamples" Content="Event Samples" HorizontalAlignment="Center" VerticalAlignment="Top" Width="244" Margin="10,80,10,0" Click="eventSamples_Click" Height="30" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="messagingSamples" Content="Messaging Samples" HorizontalAlignment="Center" VerticalAlignment="Top" Width="244" Margin="10,115,10,0" Click="messagingSamples_Click" Height="30" FontSize="14" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

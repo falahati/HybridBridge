@@ -1,0 +1,10 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "SimpleHttpListener": "2.0.7",
+    "System.Reactive": "3.0.0"
+  },
+  "frameworks": {
+    ".NETPortable,Version=v4.5,Profile=Profile7": {}
+  }
+}

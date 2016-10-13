@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="HybridBridge.UWP.Samples.Samples"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HybridBridge.UWP.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Button Content="Class Method Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,36,10,0" Grid.Row="3" Click="methodSamplesAsync_Click"/>
+        <Button Content="Class Property Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,88,10,-48" Grid.Row="3" Click="propertySamplesAsync_Click"/>
+        <Button Content="Event Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,140,10,-100" Grid.Row="3" Click="eventSamplesAsync_Click"/>
+        <Button Content="Messaging Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,192,10,-152" Grid.Row="3" Click="messagingSamplesAsync_Click"/>
+        <Button Content="Class Method Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,272,10,-232" Grid.Row="3" Click="methodSamples_Click"/>
+        <Button Content="Class Property Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,324,10,-284" Grid.Row="3" Click="propertySamples_Click"/>
+        <Button Content="Event Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,376,10,-336" Grid.Row="3" Click="eventSamples_Click"/>
+        <Button Content="Messaging Samples" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,428,10,-388" Grid.Row="3" Click="messagingSamples_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Hybrid Bridge Samples:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,244,0,-192" Grid.Row="3" TextWrapping="Wrap" Text="Hybrid Local HTTP Server Samples:" VerticalAlignment="Top"/>
+    </Grid>
+</Page>
