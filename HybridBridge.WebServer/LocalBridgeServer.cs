@@ -120,7 +120,12 @@ namespace HybridBridge.WebServer
                     }
                     Protocol = @"http://127.0.0.1:" + PortNumber;
                 }
-                catch (Exception e)
+                catch (NotImplementedException)
+                {
+                    Server = null;
+                    throw;
+                }
+                catch
                 {
                     invalidPorts.Add(PortNumber);
                     try
