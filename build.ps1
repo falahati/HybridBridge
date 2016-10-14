@@ -1,0 +1,8 @@
+$msbuild = join-path -path (Get-ItemProperty "HKLM:\software\Microsoft\MSBuild\ToolsVersions\14.0")."MSBuildToolsPath" -childpath "msbuild.exe"
+&$msbuild HybridBridge\HybridBridge.csproj /t:Build /t:Package /p:Configuration="Release"
+&$msbuild HybridBridge.Android\HybridBridge.Android.csproj /t:Build /t:Package /p:Configuration="Release"
+&$msbuild HybridBridge.iOS\HybridBridge.iOS.csproj /t:Build /t:Package /p:Configuration="Release"
+&$msbuild HybridBridge.UWP\HybridBridge.UWP.csproj /t:Build /t:Package /p:Configuration="Release"
+&$msbuild HybridBridge.WebServer\HybridBridge.WebServer.csproj /t:Build /t:Package /p:Configuration="Release"
+&$msbuild HybridBridge.Win\HybridBridge.Win.csproj /t:Build /t:Package /p:Configuration="Release"
+&$msbuild HybridBridge.Win81\HybridBridge.Win81.csproj /t:Build /t:Package /p:Configuration="Release"

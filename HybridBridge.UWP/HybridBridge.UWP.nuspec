@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>HybridBridge.UWP</id>
+        <version>0.0</version>
+        <title>C#-Javascript HybridBridge for Universal Windows Platform</title>
+        <authors>Soroush Falahati</authors>
+        <licenseUrl>https://github.com/falahati/HybridBridge/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/falahati/HybridBridge</projectUrl>
+        <iconUrl>https://github.com/falahati/HybridBridge/blob/master/Icon.png?raw=true</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A library that lets you connect Javascript on the browser side to the C# code by proxying C# side.</description>
+        <language>en-US</language>
+		<dependencies>
+		  <dependency id="Newtonsoft.Json" version="9.0.1" />
+		  <dependency id="HybridBridge" version="1.0.0" />
+		  <dependency id="HybridBridge.WebServer" version="1.0.0" />
+		</dependencies>
+    </metadata>
+    <files>
+		<file src="readme.txt" target="" />
+		<file src="../Icon.png" target="" />
+    </files>
+</package>
