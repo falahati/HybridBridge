@@ -98,25 +98,18 @@ namespace HybridBridge.WebServer
                     Server.HttpRequestObservable.Subscribe(OnHttpRequest);
                     using (var testSocket = new TcpSocketClient())
                     {
-                        try
+                        var tokenSource = new CancellationTokenSource();
+                        var connectOperation = testSocket.ConnectAsync("127.0.0.1", PortNumber.ToString(), false,
+                            tokenSource.Token);
+                        tokenSource.CancelAfter(TimeSpan.FromSeconds(10));
+                        await connectOperation;
+                        if (connectOperation.IsFaulted || connectOperation.IsCanceled)
                         {
-                            var tokenSource = new CancellationTokenSource();
-                            var connectOperation = testSocket.ConnectAsync("127.0.0.1", PortNumber.ToString(), false,
-                                tokenSource.Token);
-                            tokenSource.CancelAfter(TimeSpan.FromSeconds(10));
-                            await connectOperation;
-                            if (connectOperation.IsFaulted || connectOperation.IsCanceled)
-                            {
-                                if (connectOperation.Exception != null)
-                                    throw connectOperation.Exception;
-                                throw new InvalidOperationException();
-                            }
-                            testSocket.Disconnect();
+                            if (connectOperation.Exception != null)
+                                throw connectOperation.Exception;
+                            throw new InvalidOperationException();
                         }
-                        catch
-                        {
-                            // ignored
-                        }
+                        testSocket.Disconnect();
                     }
                     Protocol = @"http://127.0.0.1:" + PortNumber;
                 }
