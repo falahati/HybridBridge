@@ -44,7 +44,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndroidBridgeController.cs" />
+    <Compile Include="WebViewHybridBridge.cs" />
     <Compile Include="JavascriptMessageEventArgs.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

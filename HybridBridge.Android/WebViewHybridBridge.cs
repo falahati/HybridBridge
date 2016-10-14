@@ -11,10 +11,10 @@ using String = Java.Lang.String;
 namespace HybridBridge.Android
 {
     /// <summary>
-    ///     AndroidHybridBridge is a class containing a list of registered
+    ///     WebViewHybridBridge is a class containing a list of registered
     ///     <see cref="IBridgeHandler" /> instances for android WebView object.
     /// </summary>
-    public class AndroidHybridBridge : BridgeController
+    public class WebViewHybridBridge : BridgeController
     {
         /// <summary>
         ///     The delegate for <see cref="JavascriptMessage" /> event
@@ -34,7 +34,7 @@ namespace HybridBridge.Android
         ///     defualt
         /// </param>
         /// <param name="collection">The collection of <see cref="IBridgeHandler" /> instances to add to this list</param>
-        public AndroidHybridBridge(WebView webView, string customProtocol, IEnumerable<IBridgeHandler> collection)
+        public WebViewHybridBridge(WebView webView, string customProtocol, IEnumerable<IBridgeHandler> collection)
             : base(customProtocol, collection)
         {
             WebView = webView;
@@ -54,7 +54,7 @@ namespace HybridBridge.Android
         ///     The protocol to use for communication with web browser, or <see langword="null" /> to use
         ///     defualt
         /// </param>
-        public AndroidHybridBridge(WebView webView, string customProtocol) : this(webView, customProtocol, null)
+        public WebViewHybridBridge(WebView webView, string customProtocol) : this(webView, customProtocol, null)
         {
         }
 
@@ -64,7 +64,7 @@ namespace HybridBridge.Android
         /// </summary>
         /// <param name="webView">The <see cref="WebView" /> to handle requests from</param>
         /// <param name="collection">The collection of <see cref="IBridgeHandler" /> instances to add to this list</param>
-        public AndroidHybridBridge(WebView webView, IEnumerable<IBridgeHandler> collection)
+        public WebViewHybridBridge(WebView webView, IEnumerable<IBridgeHandler> collection)
             : this(webView, null, collection)
         {
         }
@@ -73,7 +73,7 @@ namespace HybridBridge.Android
         ///     Creates a new instance of this class for the provided WebView
         /// </summary>
         /// <param name="webView">The <see cref="WebView" /> to handle requests from</param>
-        public AndroidHybridBridge(WebView webView) : this(webView, null, null)
+        public WebViewHybridBridge(WebView webView) : this(webView, null, null)
         {
         }
 
@@ -103,13 +103,13 @@ namespace HybridBridge.Android
         /// </summary>
         protected class AndroidWebChromeClient : WebChromeClient
         {
-            private readonly AndroidHybridBridge _bridge;
+            private readonly WebViewHybridBridge _bridge;
 
             /// <summary>
-            ///     Creates a new instance of this class for the passed <see cref="AndroidHybridBridge" /> instance
+            ///     Creates a new instance of this class for the passed <see cref="WebViewHybridBridge" /> instance
             /// </summary>
-            /// <param name="bridge">The parent <see cref="AndroidHybridBridge" /> instance</param>
-            public AndroidWebChromeClient(AndroidHybridBridge bridge)
+            /// <param name="bridge">The parent <see cref="WebViewHybridBridge" /> instance</param>
+            public AndroidWebChromeClient(WebViewHybridBridge bridge)
             {
                 _bridge = bridge;
             }
@@ -164,13 +164,13 @@ namespace HybridBridge.Android
         /// </summary>
         protected class AndroidWebViewClient : WebViewClient
         {
-            private readonly AndroidHybridBridge _bridge;
+            private readonly WebViewHybridBridge _bridge;
 
             /// <summary>
-            ///     Creates a new instance of this class for the passed <see cref="AndroidHybridBridge" /> instance
+            ///     Creates a new instance of this class for the passed <see cref="WebViewHybridBridge" /> instance
             /// </summary>
-            /// <param name="bridge">The parent <see cref="AndroidHybridBridge" /> instance</param>
-            public AndroidWebViewClient(AndroidHybridBridge bridge)
+            /// <param name="bridge">The parent <see cref="WebViewHybridBridge" /> instance</param>
+            public AndroidWebViewClient(WebViewHybridBridge bridge)
             {
                 _bridge = bridge;
             }
