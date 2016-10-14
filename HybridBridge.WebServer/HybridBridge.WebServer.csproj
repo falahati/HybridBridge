@@ -48,20 +48,6 @@
       <Name>HybridBridge</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="HttpMachine">
-      <HintPath>..\packages\HttpMachine.PCL.1.1.1\lib\portable-net45+netcore45\HttpMachine.dll</HintPath>
-    </Reference>
-    <Reference Include="ISimpleHttpServer">
-      <HintPath>..\packages\SimpleHttpListener.2.0.8\lib\portable-net45+netcore45\ISimpleHttpServer.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleHttpServer">
-      <HintPath>..\packages\SimpleHttpListener.2.0.8\lib\portable-net45+netcore45\SimpleHttpServer.dll</HintPath>
-    </Reference>
-    <Reference Include="SocketLite">
-      <HintPath>..\packages\SocketLite.PCL.2.0.7\lib\portable-net45+netcore45\SocketLite.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="../NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

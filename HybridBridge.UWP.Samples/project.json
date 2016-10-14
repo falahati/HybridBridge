@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "SimpleHttpListener": "2.0.8"
+    "SimpleHttpListener": "2.0.10"
   },
   "frameworks": {
     "uap10.0": {}
