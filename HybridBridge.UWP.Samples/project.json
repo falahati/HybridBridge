@@ -1,7 +1,9 @@
 ﻿{
   "dependencies": {
+    "HttpMachine.PCL": "1.1.10",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "SimpleHttpListener": "2.0.10"
+    "SimpleHttpListener": "2.0.21",
+    "SocketLite.PCL": "2.0.20"
   },
   "frameworks": {
     "uap10.0": {}

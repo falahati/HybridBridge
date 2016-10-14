@@ -169,7 +169,7 @@ namespace HybridBridge.WebServer
             bool hasResult;
             object result;
             if ((httpRequest.Method == "GET") && (httpRequest.Path != null) &&
-                HandleRequestUrl(Protocol.TrimEnd('/') + httpRequest.RequstUri, out hasResult, out result))
+                HandleRequestUrl(Protocol.TrimEnd('/') + httpRequest.RequestUri, out hasResult, out result))
             {
                 httpResponse.Body =
                     new MemoryStream(Encoding.UTF8.GetBytes(hasResult ? JsonConvert.SerializeObject(result) : ""));
