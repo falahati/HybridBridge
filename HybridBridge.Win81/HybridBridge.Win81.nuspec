@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>HybridBridge.UWP</id>
+        <id>HybridBridge.Win81</id>
         <version>$version$</version>
         <title>C#-Javascript HybridBridge for Universal Windows 8 and Windows Phone 8</title>
         <authors>Soroush Falahati</authors>
