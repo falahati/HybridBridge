@@ -102,21 +102,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\HybridBridge.WebServer\HybridBridge.WebServer.csproj">
-      <Project>{9f93fd8b-5d61-4ff4-9286-fbc4dd63efd1}</Project>
-      <Name>HybridBridge.WebServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HybridBridge.Win81\HybridBridge.Win81.csproj">
-      <Project>{f35ecd49-04fd-4cb9-a3d3-1c7933e4094c}</Project>
-      <Name>HybridBridge.Win81</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HybridBridge\HybridBridge.csproj">
-      <Project>{3ca619ca-a1ce-416f-806c-c86ea0e72e3e}</Project>
-      <Name>HybridBridge</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

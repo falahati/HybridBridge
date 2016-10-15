@@ -102,20 +102,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HybridBridge.WebServer\HybridBridge.WebServer.csproj">
-      <Project>{9f93fd8b-5d61-4ff4-9286-fbc4dd63efd1}</Project>
-      <Name>HybridBridge.WebServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HybridBridge.Win\HybridBridge.Win.csproj">
-      <Project>{3f3fe7f1-e617-4457-9d55-b4fbdaa002b4}</Project>
-      <Name>HybridBridge.Win</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HybridBridge\HybridBridge.csproj">
-      <Project>{3ca619ca-a1ce-416f-806c-c86ea0e72e3e}</Project>
-      <Name>HybridBridge</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Assets\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

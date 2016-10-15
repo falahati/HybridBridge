@@ -1,6 +1,8 @@
 ﻿{
   "supports": {},
-  "dependencies": {},
+  "dependencies": {
+    "HybridBridge.Win81": "1.0.0"
+  },
   "frameworks": {
     "WindowsPhoneApp,Version=v8.1": {}
   },

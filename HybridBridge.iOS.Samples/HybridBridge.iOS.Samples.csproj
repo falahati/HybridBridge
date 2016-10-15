@@ -125,24 +125,25 @@
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="Resources\Samples.xib" />
     <InterfaceDefinition Include="Resources\Sample.xib" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="HybridBridge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HybridBridge.1.0.0\lib\portable40-net403+sl5+win8+wp8+wpa81\HybridBridge.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HybridBridge.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HybridBridge.iOS.1.0.0\lib\xamarinios10\HybridBridge.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HybridBridge.iOS\HybridBridge.iOS.csproj">
-      <Project>{f9e3107e-6272-4048-a241-164318e6dcf4}</Project>
-      <Name>HybridBridge.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
-    </ProjectReference>
-    <ProjectReference Include="..\HybridBridge\HybridBridge.csproj">
-      <Project>{3ca619ca-a1ce-416f-806c-c86ea0e72e3e}</Project>
-      <Name>HybridBridge</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
