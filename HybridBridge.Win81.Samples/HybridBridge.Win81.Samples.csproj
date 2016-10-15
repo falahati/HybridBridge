@@ -140,7 +140,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="HybridBridge.Win81.Samples_TemporaryKey.pfx" />
-    <None Include="packages.config" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -168,52 +167,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="HttpMachine, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HttpMachine.PCL.1.1.10\lib\portable45-net45+win8+wpa81\HttpMachine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ISimpleHttpServer, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleHttpListener.2.0.21\lib\portable45-net45+win8+wpa81\ISimpleHttpServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ISocketLite.PCL, Version=2.0.20.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SocketLite.PCL.2.0.20\lib\portable-net451+netcore451+wpa81\ISocketLite.PCL.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SimpleHttpServer, Version=2.0.21.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleHttpListener.2.0.21\lib\portable45-net45+win8+wpa81\SimpleHttpServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SocketLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SocketLite.PCL.2.0.20\lib\portable-net451+netcore451+wpa81\SocketLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Core.3.0.0\lib\netcore451\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Interfaces.3.0.0\lib\netstandard1.0\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Linq.3.0.0\lib\netstandard1.1\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.PlatformServices.3.0.0\lib\netcore451\System.Reactive.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Windows.Threading.3.0.0\lib\netcore451\System.Reactive.Windows.Threading.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.WindowsRuntime, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.WindowsRuntime.3.0.0\lib\netcore451\System.Reactive.WindowsRuntime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
