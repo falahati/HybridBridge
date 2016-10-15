@@ -3,7 +3,7 @@
     <metadata>
         <id>HybridBridge.Android</id>
         <version>$version$</version>
-        <title>C#-Javascript HybridBridge for Android</title>
+        <title>.Net/Javascript HybridBridge for Android</title>
         <authors>Soroush Falahati</authors>
         <licenseUrl>https://github.com/falahati/HybridBridge/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/falahati/HybridBridge</projectUrl>
@@ -11,6 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A library that lets you connect Javascript on the browser side to the C# code by proxying C# side.</description>
         <language>en-US</language>
+        <tags>Google Android WebView Javascript Hybrid Bridge</tags>
     </metadata>
     <files>
 		<file src="readme.txt" target="" />

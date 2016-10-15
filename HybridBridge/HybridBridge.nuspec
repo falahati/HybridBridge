@@ -3,7 +3,7 @@
     <metadata>
         <id>HybridBridge</id>
         <version>$version$</version>
-        <title>C#-Javascript HybridBridge</title>
+        <title>.Net/Javascript HybridBridge</title>
         <authors>Soroush Falahati</authors>
         <licenseUrl>https://github.com/falahati/HybridBridge/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/falahati/HybridBridge</projectUrl>
@@ -11,6 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A PCL library that lets you connect Javascript on the browser side to the C# code by proxying C# side. For this library to be usable you need to use one of the platform packages.</description>
         <language>en-US</language>
+        <tags>.NetFramework Javascript Class Proxy Hybrid Bridge</tags>
     </metadata>
     <files>
 		<file src="readme.txt" target="" />
