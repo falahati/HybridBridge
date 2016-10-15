@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>HybridBridge</id>
-        <version>0.0</version>
+        <version>$version$</version>
         <title>C#-Javascript HybridBridge</title>
         <authors>Soroush Falahati</authors>
         <licenseUrl>https://github.com/falahati/HybridBridge/blob/master/LICENSE</licenseUrl>
@@ -11,9 +11,6 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A PCL library that lets you connect Javascript on the browser side to the C# code by proxying C# side. For this library to be usable you need to use one of the platform packages.</description>
         <language>en-US</language>
-		<dependencies>
-		  <dependency id="Newtonsoft.Json" version="9.0.1" />
-		</dependencies>
     </metadata>
     <files>
 		<file src="readme.txt" target="" />
