@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="../Assets/style.css" />
     <script>
         function GetComplexField() {
-            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            var controllersNs = window.HybridBridge.WinPhone81.Samples.Controllers;
             window.external.notify(JSON.stringify(controllersNs.PropertySamplesController.ComplexField, null, 4).toString());
         }
 
@@ -23,7 +23,7 @@
 
         function SetComplexField() {
             var value = { IntValue: 10, StringValue: 'Some Javascript String' };
-            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            var controllersNs = window.HybridBridge.WinPhone81.Samples.Controllers;
             controllersNs.PropertySamplesController.ComplexField = value;
             window.external.notify('ComplexField changed with new object. You can check the new value using the above example.');
         }
@@ -47,18 +47,18 @@
         </div>
         <div class="sample">
             <label>Javascript Code:</label>
-            <pre>var x = HybridBridge.Win81.Samples.Controllers.PropertySamplesController.ComplexField;</pre>
+            <pre>var x = HybridBridge.WinPhone81.Samples.Controllers.PropertySamplesController.ComplexField;</pre>
             <label>Or</label>
-            <pre>var ControllersNS = HybridBridge.Win81.Samples.Controllers;
+            <pre>var ControllersNS = HybridBridge.WinPhone81.Samples.Controllers;
 var x = ControllersNS.PropertySamplesController.ComplexField;</pre>
             <input type="button" value="Get Static Complex Type Field" onclick="GetComplexField();" />
         </div>
         <div class="sample">
             <label>Javascript Code:</label>
-            <pre>HybridBridge.Win81.Samples.Controllers.PropertySamplesController.ComplexField = { IntValue: 10, StringValue: 'Some Javascript String' };</pre>
+            <pre>HybridBridge.WinPhone81.Samples.Controllers.PropertySamplesController.ComplexField = { IntValue: 10, StringValue: 'Some Javascript String' };</pre>
             <label>Or</label>
             <pre>var x = { IntValue: 10, StringValue: 'Some Javascript String' };
-var ControllersNS = HybridBridge.Win81.Samples.Controllers;
+var ControllersNS = HybridBridge.WinPhone81.Samples.Controllers;
 ControllersNS.PropertySamplesController.ComplexField = x;
 </pre>
             <input type="button" value="Set Instance Property" onclick="SetComplexField();" />

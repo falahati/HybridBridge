@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="../Assets/style.css" />
     <script>
         function StartCountdown() {
-            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            var controllersNs = window.HybridBridge.WinPhone81.Samples.Controllers;
             controllersNs.EventSamplesController.StartTimerAsync(5);
         }
 
@@ -12,13 +12,13 @@
         }
 
         function Subscribe() {
-            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            var controllersNs = window.HybridBridge.WinPhone81.Samples.Controllers;
             controllersNs.EventSamplesController.add_IntEvent(Countdown);
             window.external.notify("Subscribed to 'IntEvent' event. Doing this more than once, results in multiple subscription.");
         }
 
         function UnSubscribe() {
-            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            var controllersNs = window.HybridBridge.WinPhone81.Samples.Controllers;
             controllersNs.EventSamplesController.remove_IntEvent(Countdown);
             window.external.notify("Unsubscribed from 'IntEvent' event.");
         }
@@ -31,10 +31,10 @@
             <pre>function Countdown(value) {
     // Do something with value
 }
-HybridBridge.Win81.Samples.Controllers.EventSamplesController.add_IntEvent(Countdown);</pre>
+HybridBridge.WinPhone81.Samples.Controllers.EventSamplesController.add_IntEvent(Countdown);</pre>
             <label>Or</label>
             <pre>
-HybridBridge.Win81.Samples.Controllers.EventSamplesController.IntEvent = function(value) {
+HybridBridge.WinPhone81.Samples.Controllers.EventSamplesController.IntEvent = function(value) {
     // Do something with value
 };</pre>
             <input type="button" value="Subscribe to 'IntEvent' Static Event" onclick="Subscribe();" />
@@ -42,7 +42,7 @@ HybridBridge.Win81.Samples.Controllers.EventSamplesController.IntEvent = functio
         </div>
         <div class="sample">
             <label>Javascript Code:</label>
-            <pre>HybridBridge.Win81.Samples.Controllers.EventSamplesController.remove_IntEvent(Countdown);</pre>
+            <pre>HybridBridge.WinPhone81.Samples.Controllers.EventSamplesController.remove_IntEvent(Countdown);</pre>
             <input type="button" value="Unsubscribe from 'IntEvent' Static Event" onclick="UnSubscribe();" />
         </div>
     </div>

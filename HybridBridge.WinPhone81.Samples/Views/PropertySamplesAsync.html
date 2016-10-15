@@ -14,7 +14,7 @@
         }
         
         function GetReadOnlyProperty() {
-            var controllersNs = window.HybridBridge.Win81.Samples.Controllers;
+            var controllersNs = window.HybridBridge.WinPhone81.Samples.Controllers;
             controllersNs.PropertySamplesControllerAsync.get_ReadOnlyPropertyAsync(function (value) {
                 window.external.notify(value);
             });
@@ -37,7 +37,7 @@
         </div>
         <div class="sample">
             <label>Javascript Code:</label>
-            <pre>HybridBridge.Win81.Samples.Controllers.PropertySamplesControllerAsync.get_ReadOnlyPropertyAsync(function (value) {
+            <pre>HybridBridge.WinPhone81.Samples.Controllers.PropertySamplesControllerAsync.get_ReadOnlyPropertyAsync(function (value) {
     // Do something with value
 });</pre>
             <input type="button" value="Get Property With Custom Get Method" onclick="GetReadOnlyProperty();" />
