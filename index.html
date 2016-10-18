@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hybrid Bridge by falahati</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Hybrid Bridge</h1>
+      <h2 class="project-tagline">a PCL library that lets you connect JavaScript on the browser side to the C# code by proxying C# side.</h2>
+      <a href="https://github.com/falahati/HybridBridge" class="btn">View on GitHub</a>
+      <a href="https://github.com/falahati/HybridBridge/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/falahati/HybridBridge/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="hybrid-bridge" class="anchor" href="#hybrid-bridge" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hybrid Bridge</h1>
+
+<p>This is a PCL library that lets you connect JavaScript on the browser side to the C# code by proxying C# side.</p>
+
+<h4>
+<a id="table-of-content" class="anchor" href="#table-of-content" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of Content</h4>
+
+<ul>
+<li><a href="#where-to-find">WHERE TO FIND</a></li>
+<li><a href="#how-it-works">HOW IT WORKS</a></li>
+<li>
+<a href="#how-to-use">HOW TO USE</a>
+
+<ul>
+<li><a href="#android">Android</a></li>
+<li><a href="#ios">iOS</a></li>
+<li><a href="#universal-windows-10-store-application-windows-10-and-windows-phone-10">Universal Windows 10 Store Application (Windows 10 and Windows Phone 10)</a></li>
+<li><a href="#universal-windows-81-store-application-and-windows-phone-81-applications">Universal Windows 8.1 Store Application and Windows Phone 8.1 Applications</a></li>
+<li>
+<a href="#windows-classic-applications-windows-forms-and-windows-presentation-foundation-wpf">Windows Classic Applications (Windows Forms and Windows Presentation Foundation, WPF)</a>
+
+<ul>
+<li><a href="#windows-forms-winform">Windows Forms (WinForm)</a></li>
+<li><a href="#windows-presentation-foundation-wpf">Windows Presentation Foundation (WPF)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#bridge-controller-hybridbridgebridgecontroller">BRIDGE CONTROLLER (HybridBridge.BridgeController)</a></li>
+<li>
+<a href="#class-bridge-hybridbridgeclassbridget">CLASS BRIDGE (HybridBridge.ClassBridge)</a>
+
+<ul>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#fields">Fields</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#instances">Instances</a></li>
+<li><a href="#instantiating">Instantiating</a></li>
+</ul>
+</li>
+<li><a href="#hybridbridgehybridmessaginghandler">HybridBridge.HybridMessagingHandler</a></li>
+<li>
+<a href="#limitations">LIMITATIONS</a>
+
+<ul>
+<li><a href="#windows-store-and-windows-phone-webview-limitations">Windows Store and Windows Phone WebView limitations</a></li>
+</ul>
+</li>
+<li><a href="#documentation">DOCUMENTATION</a></li>
+<li><a href="#license">LICENSE</a></li>
+</ul>
+
+<h3>
+<a id="where-to-find" class="anchor" href="#where-to-find" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WHERE TO FIND</h3>
+
+<p>This library is available as a NuGet package at <a href="https://www.nuget.org/packages/HybridBridge/">nuget.org</a>.</p>
+
+<p>For this library to be usable you need to use one of the following platform packages.</p>
+
+<ul>
+<li><a href="https://www.nuget.org/packages/HybridBridge.Android/">HybridBridge.Android</a></li>
+<li><a href="https://www.nuget.org/packages/HybridBridge.iOS/">HybridBridge.iOS</a></li>
+<li><a href="https://www.nuget.org/packages/HybridBridge.UWP/">HybridBridge.UWP</a></li>
+<li><a href="https://www.nuget.org/packages/HybridBridge.Win/">HybridBridge.Win</a></li>
+<li><a href="https://www.nuget.org/packages/HybridBridge.Win81/">HybridBridge.Win81</a></li>
+</ul>
+
+<h3>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HOW IT WORKS</h3>
+
+<p>Unlike the majority of other libraries out there, HybridBridge put the focus on the JavaScript side instead of C# code. Using HybridBridge you can proxy your C# code on the JavaScript side and as result of this, you have full access to the C# class properties, methods, fields, and events.</p>
+
+<p>Starting point of this library is the <code>HybridBridge.BridgeController</code> class which is a simple list of <code>HybridBridge.IBridgeHandler</code> implemented classes. Each <code>HybridBridge.IBridgeHandler</code> registered to this class will have the chance to response to the JavaScript side and this makes it easy to expand this library by simply writing new classes implementing <code>HybridBridge.IBridgeHandler</code> interface.</p>
+
+<p>We also defined and shipped three class implementing <code>HybridBridge.IBridgeHandler</code> interface in this library, one for proxying C# classes (<code>HybridBridge.ClassBridge</code>), one for proxying C# <code>enum</code>s (<code>HybridBridge.EnumBridge</code>) and another one just for two-way communication (<code>HybridBridge.HybridMessagingHandler</code>). In most cases, these are enough for your project and there is no need to write a new one.</p>
+
+<p>On the other side, <code>HybridBridge.BridgeController</code> needs to be connected to the native Web Browser controls on each platform. This is done by inheriting this class in platform projects and packages. So you can share your JavaScript, C# code and Html files across all platforms and leave it to the platform packages to make the connection between native Web Browser control and the <code>HybridBridge.BridgeController</code> class.</p>
+
+<p>This makes it possible to have a two-way communication between C# side and the browser (JavaScript) without any change to the logic of your program.</p>
+
+<p>Following flowchart, tries to show the relationships between classes and the way communication and content delivery works in a cross-platform application using <code>HybridBridge</code>:
+<img src="https://github.com/falahati/HybridBridge/blob/master/Flowchart.jpg?raw=true" alt="Screenshot" title="Screenshot"></p>
+
+<h3>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HOW TO USE</h3>
+
+<p>After adding the correct package to your project, it is possible to map the native Web Browser control to the HybridBridge class using the platform specific children of the <code>HybridBridge.BridgeController</code> class. Following examples demonstrate how to create a new instance of this classes and pass the native Web Browser control to be bridged.</p>
+
+<h4>
+<a id="android" class="anchor" href="#android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Android</h4>
+
+<p><code>HybridBridge.Android</code> package contains a class named <code>WebViewHybridBridge</code> inheriting from <code>HybridBridge.BridgeController</code>. Using this class, you are able to connect the <code>WebKit.WebView</code> control to the <code>HybridBridge</code> library.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.Android.WebViewHybridBridge(webView);</pre></div>
+
+<h4>
+<a id="ios" class="anchor" href="#ios" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>iOS</h4>
+
+<p><code>HybridBridge.iOS</code> package contains a class named <code>UIWebViewHybridBridge</code> inheriting from <code>HybridBridge.BridgeController</code>. Using this class, you are able to connect the <code>Foundation.UIWebView</code> control to the <code>HybridBridge</code> library.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.iOS.UIWebViewHybridBridge(webView);</pre></div>
+
+<h4>
+<a id="universal-windows-10-store-application-windows-10-and-windows-phone-10" class="anchor" href="#universal-windows-10-store-application-windows-10-and-windows-phone-10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Universal Windows 10 Store Application (Windows 10 and Windows Phone 10)</h4>
+
+<p><code>HybridBridge.UWP</code> package contains a class named <code>WebViewHybridBridge</code> inheriting from <code>HybridBridge.BridgeController</code>. Using this class you are able to connect the <code>UI.Core.WebView</code> control to the <code>HybridBridge</code> library.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.UWP.WebViewHybridBridge(webView);</pre></div>
+
+<p>Unfortunately, because of limitations forced on us by the <code>WebView</code> control, <code>WebViewHybridBridge</code> cannot offer the full functionalities of this library. For more information about this please read the <a href="#windows-store-and-windows-phone-webview-limitations">Windows Store and Windows Phone WebView limitations</a> part.
+As a workaround, however, <code>HybridBridge.UWP</code> offers another way of connecting the <code>HybridBridge</code> library to the <code>WebView</code>, enabling it to work in full capacity; <code>WebViewHybridServer</code> class is responsible for enabling full two-way communication in this situations by opening a local port and handling HTTP request directly.
+However, for being able to use this class, you should add the <code>Internet Server</code> or <code>Private Server</code> capacity to your application's manifest file.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.UWP.WebViewHybridServer(webView);</pre></div>
+
+<h4>
+<a id="universal-windows-81-store-application-and-windows-phone-81-applications" class="anchor" href="#universal-windows-81-store-application-and-windows-phone-81-applications" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Universal Windows 8.1 Store Application and Windows Phone 8.1 Applications</h4>
+
+<p><code>HybridBridge.Win81</code> package contains a class named <code>WebViewHybridBridge</code> inheriting from <code>HybridBridge.BridgeController</code>. Using this class you are able to connect the <code>UI.Core.WebView</code> control to the <code>HybridBridge</code> library.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.Win81.WebViewHybridBridge(webView);</pre></div>
+
+<p>Unfortunately, because of limitations forced on us by the <code>WebView</code> control, <code>WebViewHybridBridge</code> cannot offer the full functionalities of this library. For more information about this please read the <a href="#windows-store-and-windows-phone-webview-limitations">Windows Store and Windows Phone WebView limitations</a> part.
+As a workaround, however, <code>HybridBridge.Win81</code> offers another way of connecting the <code>HybridBridge</code> library to the <code>WebView</code>, enabling it to works in full capacity; <code>WebViewHybridServer</code> class is responsible for enabling full two-way communication in this situations by opening a local port and handling HTTP request directly.
+However, for being able to use this class, you should add the <code>Internet Server</code> or <code>Private Server</code> capacity to your application's manifest file.</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.Win81.WebViewHybridServer(webView);</pre></div>
+
+<h4>
+<a id="windows-classic-applications-windows-forms-and-windows-presentation-foundation-wpf" class="anchor" href="#windows-classic-applications-windows-forms-and-windows-presentation-foundation-wpf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows Classic Applications (Windows Forms and Windows Presentation Foundation, WPF)</h4>
+
+<p><code>HybridBridge.Win</code> package contains two class inheriting from <code>HybridBridge.BridgeController</code> making this possible to connect the <code>Windows.Forms.WebBrowser</code> and <code>Windows.Controls.WebBrowser</code> controls to the <code>HybridBridge</code> library.
+However, this is important to clarify that none of these controls are natively compatible with <code>HybridBridge</code> mechanism for handling the request and as result of this, both classes defined in this package are working by opening a local port and listening for incoming HTTP request. This may opens a <strong>Security Hole</strong> to your application while running under Windows.
+Also, you should take care of permissions required for opening a local port on the running system.</p>
+
+<h5>
+<a id="windows-forms-winform" class="anchor" href="#windows-forms-winform" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows Forms (WinForm)</h5>
+
+<p><code>WebBrowserHybridServer</code> class is responsible for making the connection to the <code>Windows.Forms.WebBrowser</code> control: </p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.Win.WebBrowserHybridServer(webBrowser);</pre></div>
+
+<h5>
+<a id="windows-presentation-foundation-wpf" class="anchor" href="#windows-presentation-foundation-wpf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows Presentation Foundation (WPF)</h5>
+
+<p><code>WPF.WebBrowserHybridServer</code> class is responsible for making the connection to the <code>Windows.Forms.WebBrowser</code> control: </p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> hybridBridge = <span class="pl-k">new</span> HybridBridge.Win.WPF.WebBrowserHybridServer(webBrowser);</pre></div>
+
+<h3>
+<a id="bridge-controller-hybridbridgebridgecontroller" class="anchor" href="#bridge-controller-hybridbridgebridgecontroller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>BRIDGE CONTROLLER (<code>HybridBridge.BridgeController</code>)</h3>
+
+<p><code>HybridBridge.BridgeController</code> is an abstract class handling and controlling the flow of information in the two-way communication channel between C# and JavaScript.
+<code>HybridBridge.BridgeController</code> and all its child platform classes do support the following methods:</p>
+
+<ul>
+<li>
+<code>HybridBridge.BridgeController.Add()</code>: Adds a new <code>IBridgeHandler</code> instance to the list of request handlers. This is important to note that in the <code>HybridBridge.BridgeController</code> abstract class and all its children, unless overridden, it is only possible to have one instance of a type.</li>
+<li>
+<code>HybridBridge.BridgeController.Clear()</code>: Clears the list of <code>IBridgeHandler</code>s</li>
+<li>
+<code>HybridBridge.BridgeController.Contains()</code>: Returns true if the passed instance of <code>IBridgeHandler</code> is in the list</li>
+<li>
+<code>HybridBridge.BridgeController.Remove()</code>: Removes the passed instance of the <code>IBridgeHandler</code> from the list</li>
+<li>
+<code>HybridBridge.BridgeController.Get&lt;T&gt;</code> and <code>HybridBridge.BridgeController.Get()</code>: Returns the requested <code>IBridgeHandler</code> by type</li>
+<li>
+<code>HybridBridge.BridgeController.ExecuteJavaScript()</code>: Execute a JavaScript string and return the result. This method also accepts a callback for asynchronies execution.</li>
+<li>
+<code>HybridBridge.BridgeController.FireJavaScript()</code>: Executes a JavaScript string and leaves the result. This method is asynchronies by design.</li>
+<li>
+<code>HybridBridge.BridgeController.CallJavaScriptFunction()</code>: Calls a JavaScript function and returns the result. This method is synchronizing by design.</li>
+<li>
+<code>HybridBridge.BridgeController.CallJavaScriptAction()</code>: Calls a JavaScript function and leaves the result. This method is asynchronies by design.</li>
+</ul>
+
+<h3>
+<a id="class-bridge-hybridbridgeclassbridget" class="anchor" href="#class-bridge-hybridbridgeclassbridget" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CLASS BRIDGE (<code>HybridBridge.ClassBridge&lt;T&gt;</code>)</h3>
+
+<p><code>HybridBridge.ClassBridge&lt;T&gt;</code> is a generic class implementing the <code>IBridgeHandler</code> interface allowing the user to be able to proxy a C# class on the JavaScript side.
+This class is capable of proxying methods, fields, constants, properties, and events; providing the JavaScript side with the ability to call, get, set and subscribe to and from methods, events and properties asynchronicity and synchronicity.</p>
+
+<p>Consider the following controller class for next samples:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">namespace</span> <span class="pl-en">MyProject.Controllers</span>
+{
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyController</span>
+    {
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">const</span> <span class="pl-k">int</span> MyIntConst = <span class="pl-c1">10</span>;
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">event</span> Action&lt;<span class="pl-k">int</span>&gt; MyStaticEvent;
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">int</span> <span class="pl-en">MyStaticIntProperty</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; };
+        <span class="pl-k">public</span> <span class="pl-k">static</span> MyModel MyStaticComplexFields;
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">string</span> <span class="pl-en">MyStaticMethod</span>(<span class="pl-k">string</span> <span class="pl-smi">someStringValue</span>)
+        {
+            <span class="pl-c">// Do something with someStringValue variable</span>
+        }
+        <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">MySampleMethod</span>()
+        {
+            <span class="pl-c">// Do something</span>
+        }
+        <span class="pl-k">public</span> <span class="pl-en">MyController</span>(<span class="pl-k">int</span> <span class="pl-smi">ctorArgument</span>)
+        {
+            <span class="pl-c">// Do something with ctorArgument and create a new instance</span>
+        }
+    }
+}</pre></div>
+
+<h4>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methods</h4>
+
+<p>Calling class methods is possible in both asynchronous and synchronize ways. The result of the method execution is also available; however, no <code>out</code> or <code>ref</code> parameters are supported. Also special methods such as the ones with <code>await</code> keyword are not officially supported.</p>
+
+<p><strong>C#</strong> code to add the proxy class to the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> myControllerBridge = 
+        <span class="pl-k">new</span> HybridBridge.ClassBridge&lt;MyProject.Controllers.MyController&gt;();
+    hybridBridge.Add(myControllerBridge);</pre></div>
+
+<p><strong>JavaScript</strong> code to call the method and get the return value:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> methodReturnValue <span class="pl-k">=</span> 
+        <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">MyStaticMethod</span>(someStringValue);</pre></div>
+
+<p>or asynchronously:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">MyStaticMethodAsync</span>(someStringValue, <span class="pl-k">function</span> (<span class="pl-smi">methodReturnValue</span>) {
+        <span class="pl-c">// propertyValue has the value of the property</span>
+    });</pre></div>
+
+<h4>
+<a id="properties" class="anchor" href="#properties" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Properties</h4>
+
+<p>It is possible to access and change property values; this library also supports properties with custom setter and getter methods.</p>
+
+<p><strong>C#</strong> code to add the proxy class to the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> myControllerBridge = 
+        <span class="pl-k">new</span> HybridBridge.ClassBridge&lt;MyProject.Controllers.MyController&gt;();
+    hybridBridge.Add(myControllerBridge);</pre></div>
+
+<p><strong>JavaScript</strong> code to access the property value:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> propertyValue <span class="pl-k">=</span> 
+        <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-smi">MyStaticIntProperty</span>;</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> propertyValue <span class="pl-k">=</span> 
+        <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">get_MyStaticIntProperty</span>();</pre></div>
+
+<p>or asynchronously:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">get_MyStaticIntPropertyAsync</span>(<span class="pl-k">function</span> (<span class="pl-smi">propertyValue</span>) {
+        <span class="pl-c">// propertyValue has the value of the property</span>
+    });</pre></div>
+
+<p><strong>JavaScript</strong> code to set the property value:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-smi">MyStaticIntProperty</span> <span class="pl-k">=</span> newValue;</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">set_MyStaticIntProperty</span>(newValue);</pre></div>
+
+<p>or asynchronously:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">set_MyStaticIntPropertyAsync</span>(newValue, <span class="pl-k">function</span> () {
+        <span class="pl-c">// Indicates that the setter called successfully</span>
+    });</pre></div>
+
+<h4>
+<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h4>
+
+<p>Accessing fields and constants are as easy as accessing properties; however, there is no way to directly call setter or getter methods or to interact with fields asynchronously. Constants, on the other hand, are directly reflected on the JavaScript side as a variable.</p>
+
+<p><strong>C#</strong> code to add the proxy class to the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> myControllerBridge = 
+        <span class="pl-k">new</span> HybridBridge.ClassBridge&lt;MyProject.Controllers.MyController&gt;();
+    hybridBridge.Add(myControllerBridge);</pre></div>
+
+<p><strong>JavaScript</strong> code to access a field or a constant value:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> constValue <span class="pl-k">=</span> <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-smi">MyIntConst</span>;</pre></div>
+
+<p><strong>JavaScript</strong> code to change a field value:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-smi">MyIntConst</span> <span class="pl-k">=</span> newValue;</pre></div>
+
+<h4>
+<a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h4>
+
+<p>Subscribing and unsubscribing to and from an event is little different from the way it is in C#. For doing so you need to use the <code>add_{event}</code> and <code>remove_{event}</code> methods or access the event like a field.</p>
+
+<p><strong>C#</strong> code to add the proxy class to the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> myControllerBridge = 
+        <span class="pl-k">new</span> HybridBridge.ClassBridge&lt;MyProject.Controllers.MyController&gt;();
+    hybridBridge.Add(myControllerBridge);</pre></div>
+
+<p><strong>JavaScript</strong> code to subscribe to an event:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">function</span> <span class="pl-en">MyEventHandler</span>(<span class="pl-smi">intValue</span>) {
+        <span class="pl-c">// Do something with the intValue</span>
+    }
+    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">add_MyStaticEvent</span>(MyEventHandler);</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">add_MyStaticEvent</span>(<span class="pl-k">function</span> (<span class="pl-smi">intValue</span>) {
+        <span class="pl-c">// Do something with the intValue</span>
+    });</pre></div>
+
+<p>It is also possible to replace all old subscriptions with a new one:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">function</span> <span class="pl-en">MyEventHandler</span>(<span class="pl-smi">intValue</span>) {
+        <span class="pl-c">// Do something with the intValue</span>
+    }
+    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-smi">MyStaticEvent</span> <span class="pl-k">=</span> MyEventHandler;</pre></div>
+
+<p><strong>JavaScript</strong> code to unsubscribe an event:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-en">remove_MyStaticEvent</span>(MyEventHandler);</pre></div>
+
+<p>Or remove all subscriptions altogether:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">MyProject</span>.<span class="pl-smi">Controllers</span>.<span class="pl-smi">MyController</span>.<span class="pl-smi">MyStaticEvent</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;</pre></div>
+
+<h4>
+<a id="instances" class="anchor" href="#instances" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instances</h4>
+
+<p>Just like static methods, it is possible to reflect functionalities of the instances of a class on the JavaScript side. However, for doing so you need to choose the variable name on the C# side and pass it to the <code>ClassBridge&lt;T&gt;.AddInstance()</code> method.
+It is also possible to not mention a variable name; this makes the instance available on the JavaScript side, however with no clear way to access it. This behavior is rarely useful.</p>
+
+<p><strong>C#</strong> code to add the proxy class and its instance to the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> myControllerBridge = 
+        <span class="pl-k">new</span> HybridBridge.ClassBridge&lt;MyProject.Controllers.MyController&gt;();
+    <span class="pl-k">var</span> controllerInstance = <span class="pl-k">new</span> MyProject.Controllers.MyController(someIntValue);
+    myControllerBridge.AddInstance(controllerInstance, <span class="pl-s"><span class="pl-pds">"</span>JavaScriptInstanceVariable<span class="pl-pds">"</span></span>);
+    hybridBridge.Add(myControllerBridge);</pre></div>
+
+<p>On the <strong>JavaScript</strong> side, it is possible to access this instance using the variable name; following sample shows how to call a method on the reflexed instance:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">JavaScriptInstanceVariable</span>.<span class="pl-en">MySampleMethod</span>();</pre></div>
+
+<p>However, it is important to know that by doing so, <code>ClassBridge&lt;T&gt;</code> keeps a reference to the instance in the memory and this may result in a memory leak if abused. So it is always a good practice to remove the instance as soon as it is no longer needed.
+Check out the following sample to remove one or multiple instances from the JavaScript side using the instance’s variable name:</p>
+
+<div class="highlight highlight-source-cs"><pre>    myControllerBridge.RemoveInstance(<span class="pl-s"><span class="pl-pds">"</span>JavaScriptInstanceVariable<span class="pl-pds">"</span></span>);</pre></div>
+
+<p>Or using the instance(s) directly. This, however, will clear all variables to this instance on the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    myControllerBridge.RemoveInstance(controllerInstance);</pre></div>
+
+<h4>
+<a id="instantiating" class="anchor" href="#instantiating" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Instantiating</h4>
+
+<p>It is possible to create a new instance of a class directly from the JavaScript side. This will call the class constructor and then adds the newly created instance automatically. It is important to use this feature with caution to prevent memory leak:</p>
+
+<p><strong>C#</strong> code to add the proxy class to the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> myControllerBridge = 
+        <span class="pl-k">new</span> HybridBridge.ClassBridge&lt;MyProject.Controllers.MyController&gt;();
+    hybridBridge.Add(myControllerBridge);</pre></div>
+
+<p>And to create the new instance on <strong>JavaScript</strong>:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> JavaScriptInstanceVariable <span class="pl-k">=</span> 
+        <span class="pl-k">new</span> <span class="pl-en">MyProject.Controllers.MyController</span>(someIntValue);</pre></div>
+
+<h3>
+<a id="hybridbridgehybridmessaginghandler" class="anchor" href="#hybridbridgehybridmessaginghandler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>HybridBridge.HybridMessagingHandler</code>
+</h3>
+
+<p>Using <code>HybridBridge.HybridMessagingHandler</code> your application can have a fast and two-way communication channel. Unlike <code>HybridBridge.ClasBridge&lt;T&gt;</code>, using this handler, you don't need to define a controller class and this makes thing a lot easier and faster.</p>
+
+<p>Making a new instance of the <code>HybridBridge.HybridMessagingHandler</code> accessible on the JavaScript side:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> hybridMessaging = <span class="pl-k">new</span> HybridBridge.HybridMessagingHandler();
+    hybridBridge.Add(massagingHandler);</pre></div>
+
+<p>Listen to messages with 'MyMessage' identification on <strong>C#</strong>:</p>
+
+<div class="highlight highlight-source-cs"><pre>    hybridMessaging.Subscribe(<span class="pl-s"><span class="pl-pds">"</span>MyMessage<span class="pl-pds">"</span></span>, () =&gt; {
+        <span class="pl-c">// Do something</span>
+    });</pre></div>
+
+<p>Or on <strong>JavaScript</strong>:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">HybridMessaging</span>.<span class="pl-en">Subscribe</span>(<span class="pl-s"><span class="pl-pds">"</span>MyMessage<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>() {
+        <span class="pl-c">// Do something</span>
+    });</pre></div>
+
+<p>It is also possible to return a value as the result of the message execution as well as sending an optional parameter. Following examples shows how to send a message with <code>MyMessageWithParameter</code> as its identification on <strong>C#</strong>:</p>
+
+<div class="highlight highlight-source-cs"><pre>    hybridMessaging.Send(<span class="pl-s"><span class="pl-pds">"</span>MyMessageWithParameter<span class="pl-pds">"</span></span>, someParameter);</pre></div>
+
+<p>Or if expecting a string as the result and sending an <code>int</code> as the parameter:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">var</span> result = hybridMessaging.Send&lt;String, Int&gt;(<span class="pl-s"><span class="pl-pds">"</span>MyMessageWithPrameter<span class="pl-pds">"</span></span>, someIntParameter);</pre></div>
+
+<p>Or on <strong>JavaScript</strong>:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-k">var</span> returnValue <span class="pl-k">=</span> <span class="pl-smi">HybridMessaging</span>.<span class="pl-en">Send</span>(<span class="pl-s"><span class="pl-pds">"</span>MyMessage<span class="pl-pds">"</span></span>, someParameter);</pre></div>
+
+<p>Doing same thing on <strong>JavaScript</strong> asynchronously looks like this:</p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-smi">HybridMessaging</span>.<span class="pl-en">SendAsync</span>(<span class="pl-s"><span class="pl-pds">"</span>MyMessage<span class="pl-pds">"</span></span>, someParameter, <span class="pl-k">function</span> (<span class="pl-smi">returnValue</span>) {
+        <span class="pl-c">// Do something with returnValue</span>
+    });</pre></div>
+
+<p><code>HybridMessaging</code> variable on the JavaScript is the representation of the <code>HybridBridge.HybridMessagingHandler</code> instance on the C# side. However, its name can be changed by explicitly passing a different name as a string to the <code>HybridBridge.HybridMessagingHandler</code> constructor.</p>
+
+<h3>
+<a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LIMITATIONS</h3>
+
+<ul>
+<li>
+<code>out</code> keyword for method parameters</li>
+<li>
+<code>ref</code> keyword for method parameters</li>
+</ul>
+
+<h4>
+<a id="windows-store-and-windows-phone-webview-limitations" class="anchor" href="#windows-store-and-windows-phone-webview-limitations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows Store and Windows Phone WebView limitations</h4>
+
+<p>Due to <code>UI.Core.WebView</code> running the JavaScript engine on the UI thread along with itself processing requests on the same thread, it is impossible to execute JavaScript methods that blocks the execution of the script as it does also block the control from receiving the request.
+This means that any synchronized method or call on the proxy class is not supported; following is the list of limitations:</p>
+
+<ul>
+<li>Synchronized calls on method puts UI thread on deadlock and therefore not possible</li>
+<li>Getting or Setting property values synchronicity is not possible</li>
+<li>Getting or setting field values is not possible at all</li>
+<li>Sending synchronized messages is not possible</li>
+</ul>
+
+<p>As the result of the above limitation, we suggest using classes that inherit the <code>HybridBridge.LocalServer.LocalBridgeServer</code> class letting controller opens a local port and response to the HTTP requests made from JavaScript. This makes the necessary separation from UI thread and therefore allows your code to use full functionalities of the <code>HybridBridge</code> library.
+Following is the list of classes that are part of the <code>HybridBridge.LocalServer.LocalBridgeServer</code> inheritance tree:</p>
+
+<ul>
+<li>
+<code>HybridBridge.UWP.WebViewHybridServer</code>: Universal Windows 10 Applications for PC and Mobile Phones</li>
+<li>
+<code>HybridBridge.Win81.WebViewHybridServer</code>: Universal Windows 8.1 Applications for PC and Mobile Phones</li>
+<li>
+<code>HybridBridge.Win.WebBrowserHybridServer</code>: Classic Windows Applications such as Windows Form and WPF</li>
+</ul>
+
+<p>However, using above classes may make your program vulnerable to attacks targeting the local HTTP server. On the other hand, to be able to use this method, you might need to allow your program certain capacities and permissions under each platform you are targeting.</p>
+
+<h3>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DOCUMENTATION</h3>
+
+<p>The project online documentation is available at <a href="http://falahati.github.io/HybridBridge/doxygen">github.io</a>.</p>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LICENSE</h3>
+
+<pre>
+                   GNU LESSER GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. 
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+
+  This version of the GNU Lesser General Public License incorporates
+the terms and conditions of version 3 of the GNU General Public
+License, supplemented by the additional permissions listed below.
+
+  0. Additional Definitions.
+
+  As used herein, "this License" refers to version 3 of the GNU Lesser
+General Public License, and the "GNU GPL" refers to version 3 of the GNU
+General Public License.
+
+  "The Library" refers to a covered work governed by this License,
+other than an Application or a Combined Work as defined below.
+
+  An "Application" is any work that makes use of an interface provided
+by the Library, but which is not otherwise based on the Library.
+Defining a subclass of a class defined by the Library is deemed a mode
+of using an interface provided by the Library.
+
+  A "Combined Work" is a work produced by combining or linking an
+Application with the Library.  The particular version of the Library
+with which the Combined Work was made is also called the "Linked
+Version".
+
+  The "Minimal Corresponding Source" for a Combined Work means the
+Corresponding Source for the Combined Work, excluding any source code
+for portions of the Combined Work that, considered in isolation, are
+based on the Application, and not on the Linked Version.
+
+  The "Corresponding Application Code" for a Combined Work means the
+object code and/or source code for the Application, including any data
+and utility programs needed for reproducing the Combined Work from the
+Application, but excluding the System Libraries of the Combined Work.
+
+  1. Exception to Section 3 of the GNU GPL.
+
+  You may convey a covered work under sections 3 and 4 of this License
+without being bound by section 3 of the GNU GPL.
+
+  2. Conveying Modified Versions.
+
+  If you modify a copy of the Library, and, in your modifications, a
+facility refers to a function or data to be supplied by an Application
+that uses the facility (other than as an argument passed when the
+facility is invoked), then you may convey a copy of the modified
+version:
+
+   a) under this License, provided that you make a good faith effort to
+   ensure that, in the event an Application does not supply the
+   function or data, the facility still operates, and performs
+   whatever part of its purpose remains meaningful, or
+
+   b) under the GNU GPL, with none of the additional permissions of
+   this License applicable to that copy.
+
+  3. Object Code Incorporating Material from Library Header Files.
+
+  The object code form of an Application may incorporate material from
+a header file that is part of the Library.  You may convey such object
+code under terms of your choice, provided that, if the incorporated
+material is not limited to numerical parameters, data structure
+layouts and accessors, or small macros, inline functions and templates
+(ten or fewer lines in length), you do both of the following:
+
+   a) Give prominent notice with each copy of the object code that the
+   Library is used in it and that the Library and its use are
+   covered by this License.
+
+   b) Accompany the object code with a copy of the GNU GPL and this license
+   document.
+
+  4. Combined Works.
+
+  You may convey a Combined Work under terms of your choice that,
+taken together, effectively do not restrict modification of the
+portions of the Library contained in the Combined Work and reverse
+engineering for debugging such modifications, if you also do each of
+the following:
+
+   a) Give prominent notice with each copy of the Combined Work that
+   the Library is used in it and that the Library and its use are
+   covered by this License.
+
+   b) Accompany the Combined Work with a copy of the GNU GPL and this license
+   document.
+
+   c) For a Combined Work that displays copyright notices during
+   execution, include the copyright notice for the Library among
+   these notices, as well as a reference directing the user to the
+   copies of the GNU GPL and this license document.
+
+   d) Do one of the following:
+
+       0) Convey the Minimal Corresponding Source under the terms of this
+       License, and the Corresponding Application Code in a form
+       suitable for, and under terms that permit, the user to
+       recombine or relink the Application with a modified version of
+       the Linked Version to produce a modified Combined Work, in the
+       manner specified by section 6 of the GNU GPL for conveying
+       Corresponding Source.
+
+       1) Use a suitable shared library mechanism for linking with the
+       Library.  A suitable mechanism is one that (a) uses at run time
+       a copy of the Library already present on the user's computer
+       system, and (b) will operate properly with a modified version
+       of the Library that is interface-compatible with the Linked
+       Version.
+
+   e) Provide Installation Information, but only if you would otherwise
+   be required to provide such information under section 6 of the
+   GNU GPL, and only to the extent that such information is
+   necessary to install and execute a modified version of the
+   Combined Work produced by recombining or relinking the
+   Application with a modified version of the Linked Version. (If
+   you use option 4d0, the Installation Information must accompany
+   the Minimal Corresponding Source and Corresponding Application
+   Code. If you use option 4d1, you must provide the Installation
+   Information in the manner specified by section 6 of the GNU GPL
+   for conveying Corresponding Source.)
+
+  5. Combined Libraries.
+
+  You may place library facilities that are a work based on the
+Library side by side in a single library together with other library
+facilities that are not Applications and are not covered by this
+License, and convey such a combined library under terms of your
+choice, if you do both of the following:
+
+   a) Accompany the combined library with a copy of the same work based
+   on the Library, uncombined with any other library facilities,
+   conveyed under the terms of this License.
+
+   b) Give prominent notice with the combined library that part of it
+   is a work based on the Library, and explaining where to find the
+   accompanying uncombined form of the same work.
+
+  6. Revised Versions of the GNU Lesser General Public License.
+
+  The Free Software Foundation may publish revised and/or new versions
+of the GNU Lesser General Public License from time to time. Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.
+
+  Each version is given a distinguishing version number. If the
+Library as you received it specifies that a certain numbered version
+of the GNU Lesser General Public License "or any later version"
+applies to it, you have the option of following the terms and
+conditions either of that published version or of any later version
+published by the Free Software Foundation. If the Library as you
+received it does not specify a version number of the GNU Lesser
+General Public License, you may choose any version of the GNU Lesser
+General Public License ever published by the Free Software Foundation.
+
+  If the Library as you received it specifies that a proxy can decide
+whether future versions of the GNU Lesser General Public License shall
+apply, that proxy's public statement of acceptance of any version is
+permanent authorization for you to choose that version for the
+Library.
+</pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/falahati/HybridBridge">Hybrid Bridge</a> is maintained by <a href="https://github.com/falahati">falahati</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
