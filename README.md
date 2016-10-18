@@ -1,6 +1,31 @@
 # Hybrid Bridge
 This is a PCL library that lets you connect JavaScript on the browser side to the C# code by proxying C# side.
 
+#### Table of Content 
+- [WHERE TO FIND](#where-to-find)
+- [HOW IT WORKS](#how-it-works)
+- [HOW TO USE](#how-to-use)
+	- [Android](#android)
+	- [iOS](#ios)
+	- [Universal Windows 10 Store Application (Windows 10 and Windows Phone 10)](#universal-windows-10-store-application-windows-10-and-windows-phone-10)
+	- [Universal Windows 8.1 Store Application and Windows Phone 8.1 Applications](#universal-windows-81-store-application-and-windows-phone-81-applications)
+	- [Windows Classic Applications (Windows Forms and Windows Presentation Foundation, WPF)](#windows-classic-applications-windows-forms-and-windows-presentation-foundation-wpf)
+		- [Windows Forms (WinForm)](#windows-forms-winform)
+		- [Windows Presentation Foundation (WPF)](#windows-presentation-foundation-wpf)
+- [BRIDGE CONTROLLER (HybridBridge.BridgeController)](#bridge-controller-hybridbridgebridgecontroller)
+- [CLASS BRIDGE (HybridBridge.ClassBridge<T>)](#class-bridge-hybridbridgeclassbridget)
+	- [Methods](#methods)
+	- [Properties](#properties)
+	- [Fields](#fields)
+	- [Events](#events)
+	- [Instances](#instances)
+	- [Instantiating](#instantiating)
+- [HybridBridge.HybridMessagingHandler](#hybridbridgehybridmessaginghandler)
+- [LIMITATIONS](#limitations)
+	- [Windows Store and Windows Phone WebView limitations](#windows-store-and-windows-phone-webview-limitations)
+- [DOCUMENTATION](#documentation)
+- [LICENSE](#license)
+
 ### WHERE TO FIND
 This library is available as a NuGet package at [nuget.org](https://www.nuget.org/packages/HybridBridge/).
 
@@ -50,7 +75,7 @@ var hybridBridge = new HybridBridge.iOS.UIWebViewHybridBridge(webView);
 var hybridBridge = new HybridBridge.UWP.WebViewHybridBridge(webView);
 ```
 
-Unfortunately, because of limitations forced on us by the `WebView` control, `WebViewHybridBridge` cannot offer the full functionalities of this library. For more information about this please read the *Windows Store and Windows Phone WebView limitations* part.
+Unfortunately, because of limitations forced on us by the `WebView` control, `WebViewHybridBridge` cannot offer the full functionalities of this library. For more information about this please read the [Windows Store and Windows Phone WebView limitations](#windows-store-and-windows-phone-webview-limitations) part.
 As a workaround, however, `HybridBridge.UWP` offers another way of connecting the `HybridBridge` library to the `WebView`, enabling it to work in full capacity; `WebViewHybridServer` class is responsible for enabling full two-way communication in this situations by opening a local port and handling HTTP request directly.
 However, for being able to use this class, you should add the `Internet Server` or `Private Server` capacity to your application's manifest file.
 
@@ -65,7 +90,7 @@ var hybridBridge = new HybridBridge.UWP.WebViewHybridServer(webView);
 var hybridBridge = new HybridBridge.Win81.WebViewHybridBridge(webView);
 ```
 
-Unfortunately, because of limitations forced on us by the `WebView` control, `WebViewHybridBridge` cannot offer the full functionalities of this library. For more information about this please read the **Windows Store and Windows Phone WebView limitations** part.
+Unfortunately, because of limitations forced on us by the `WebView` control, `WebViewHybridBridge` cannot offer the full functionalities of this library. For more information about this please read the [Windows Store and Windows Phone WebView limitations](#windows-store-and-windows-phone-webview-limitations) part.
 As a workaround, however, `HybridBridge.Win81` offers another way of connecting the `HybridBridge` library to the `WebView`, enabling it to works in full capacity; `WebViewHybridServer` class is responsible for enabling full two-way communication in this situations by opening a local port and handling HTTP request directly.
 However, for being able to use this class, you should add the `Internet Server` or `Private Server` capacity to your application's manifest file.
 
@@ -353,9 +378,6 @@ However, using above classes may make your program vulnerable to attacks targeti
 
 ### DOCUMENTATION
 The project online documentation is available at [github.io](http://falahati.github.io/HybridBridge/doxygen).
-
-#### MORE INFO
-Check out the project’s web page at [github.io](http://falahati.github.io/HybridBridge/).
 
 ### LICENSE
 
