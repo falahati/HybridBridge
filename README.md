@@ -37,6 +37,9 @@ For this library to be usable you need to use one of the following platform pack
 * [HybridBridge.Win](https://www.nuget.org/packages/HybridBridge.Win/)
 * [HybridBridge.Win81](https://www.nuget.org/packages/HybridBridge.Win81/)
 
+### Donation
+[<img width="24" height="24" src="http://icons.iconarchive.com/icons/sonya/swarm/256/Coffee-icon.png"/>**Every coffee counts! :)**](https://www.coinpayments.net/index.php?cmd=_donate&reset=1&merchant=820707aded07845511b841f9c4c335cd&item_name=Donate&currency=USD&amountf=10.00000000&allow_amount=1&want_shipping=0&allow_extra=1)
+
 ### HOW IT WORKS
 Unlike the majority of other libraries out there, HybridBridge put the focus on the JavaScript side instead of C# code. Using HybridBridge you can proxy your C# code on the JavaScript side and as result of this, you have full access to the C# class properties, methods, fields, and events.
 
