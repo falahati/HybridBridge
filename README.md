@@ -1,4 +1,8 @@
 # Hybrid Bridge
+[![](https://img.shields.io/github/license/falahati/HybridBridge.svg?style=flat-square)](https://github.com/falahati/HybridBridge/blob/master/LICENSE)
+[![](https://img.shields.io/github/commit-activity/y/falahati/HybridBridge.svg?style=flat-square)](https://github.com/falahati/HybridBridge/commits/master)
+[![](https://img.shields.io/github/issues/falahati/HybridBridge.svg?style=flat-square)](https://github.com/falahati/HybridBridge/issues)
+
 This is a PCL library that lets you connect JavaScript on the browser side to the C# code by proxying C# side.
 
 #### Table of Content 
@@ -27,6 +31,9 @@ This is a PCL library that lets you connect JavaScript on the browser side to th
 - [LICENSE](#license)
 
 ### WHERE TO FIND
+[![](https://img.shields.io/nuget/dt/HybridBridge.svg?style=flat-square)](https://www.nuget.org/packages/HybridBridge)
+[![](https://img.shields.io/nuget/v/HybridBridge.svg?style=flat-square)](https://www.nuget.org/packages/HybridBridge)
+
 This library is available as a NuGet package at [nuget.org](https://www.nuget.org/packages/HybridBridge/).
 
 For this library to be usable you need to use one of the following platform packages.
@@ -38,7 +45,15 @@ For this library to be usable you need to use one of the following platform pack
 * [HybridBridge.Win81](https://www.nuget.org/packages/HybridBridge.Win81/)
 
 ### Donation
-[<img width="24" height="24" src="http://icons.iconarchive.com/icons/sonya/swarm/256/Coffee-icon.png"/>**Every coffee counts! :)**](https://www.coinpayments.net/index.php?cmd=_donate&reset=1&merchant=820707aded07845511b841f9c4c335cd&item_name=Donate&currency=USD&amountf=10.00000000&allow_amount=1&want_shipping=0&allow_extra=1)
+Donations assist development and are greatly appreciated; also always remember that [every coffee counts!](https://media.makeameme.org/created/one-simply-does-i9k8kx.jpg) :)
+
+[![](https://img.shields.io/badge/fiat-PayPal-8a00a3.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=WR3KK2B6TYYQ4&item_name=Donation&currency_code=USD&source=url)
+[![](https://img.shields.io/badge/crypto-CoinPayments-8a00a3.svg?style=flat-square)](https://www.coinpayments.net/index.php?cmd=_donate&reset=1&merchant=820707aded07845511b841f9c4c335cd&item_name=Donate&currency=USD&amountf=20.00000000&allow_amount=1&want_shipping=0&allow_extra=1)
+[![](https://img.shields.io/badge/shetab-ZarinPal-8a00a3.svg?style=flat-square)](https://zarinp.al/@falahati)
+
+**--OR--**
+
+You can always donate your time by contributing to the project or by introducing it to others.
 
 ### HOW IT WORKS
 Unlike the majority of other libraries out there, HybridBridge put the focus on the JavaScript side instead of C# code. Using HybridBridge you can proxy your C# code on the JavaScript side and as result of this, you have full access to the C# class properties, methods, fields, and events.
