@@ -349,7 +349,23 @@ HybridBridge.__call = function (handlerName, actionName, actionParameters, resul
         }}
     }}
     return undefined;
-}};");
+}};
+
+HybridBridge.__fireReady = function() {{
+    var name = ""bridgeready"";
+    var event;
+    if (document.createEvent) {{
+        event = document.createEvent(""HTMLEvents"");
+        event.initEvent(name, true, true);
+        event.eventName = name;
+        document.dispatchEvent(event);
+    }} else {{
+        event = document.createEventObject();
+        event.eventType = name;
+        event.eventName = name;
+        document.fireEvent(""on"" + name, event);
+    }}
+}}");
         }
 
         /// <summary>
@@ -415,6 +431,7 @@ HybridBridge.__call = function (handlerName, actionName, actionParameters, resul
             Initialize();
             foreach (var handler in this)
                 handler.Initialize(this);
+            FireJavascript("HybridBridge.__fireReady();");
         }
 
         /// <summary>
